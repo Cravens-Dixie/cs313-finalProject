@@ -25,8 +25,8 @@ app.listen(app.get("port"), function() {
 function seeCollection(req, res) {
     console.log("Working on request for the collection.");
 
-    var table = req.query.table;
-    console.log("Retrieving collection ", table);
+    var collection = req.query.collection;
+    console.log("Retrieving collection ", collection);
 
     seeCollectionFromDb(table, function(error, result) {
         console.log("Back from the seeCollectionFromDb function with result: ", result);
@@ -42,11 +42,11 @@ function seeCollection(req, res) {
     
 }
 
-function seeCollectionFromDb(table, callback) {
-    console.log("GetCollectionFromDB called with table: ", table);
+function seeCollectionFromDb(collection, callback) {
+    console.log("GetCollectionFromDB called with table: ", collection);
     
 
-    var buildSql = "SELECT name, description, size FROM " + table + ";";
+    var buildSql = "SELECT item_name, item_description FROM " + collection + ";";
     var sql = buildSql;
     //var params = [table];
 
@@ -61,6 +61,8 @@ function seeCollectionFromDb(table, callback) {
         callback(null, result.rows)
     });
 }
+
+// TODO build function to log-in user and return user id
 function logIn() {
 
 };

@@ -9,21 +9,23 @@
     <h2>I collect, you collect, we all collect stuff.</h2>
     <p>Please sign-in to see your collections:</p>
     <p>Not working yet!</p>
-    <form action="/logIn" method="POST" id="logIn">
+    <!-- <form action="/logIn" method="POST" id="logIn">
         <label for="name ">Name:</label><br>
         <input type="text" id="name" name="name"><br> 
         <label for="password ">Password:</label><br>
         <input type="text" id="password" name="password"><br>
-        <input type="submit" value="Submit">     
+        <input type="submit" value="Submit">      -->
         
-        <!-- Create collections dynamically based on the log-in -->
+        <!-- TODO Create collections dynamically based on the log-in -->
+    <form action="/seeCollection" method="GET" id="seecollection"></form>
         <p>Please select a collection:</p>
-        <select name='collectionName'>
-            <option value='collection1'>Squishmallows</option>
-            <option value='collection2'>Stamp Sets</option>
-            <option value='collection3'>Something Cool</option>
-            <option value='collection4'>Something Very Cool</option>
+        <select name='collection'>
+            <option value='Squishmallows'>Squishmallows</option>
+            <option value='Stamp Sets'>Stamp Sets</option>
+            <option value='collection3' disabled>Something Cool</option>
+            <option value='collection4' disabled>Something Very Cool</option>
         </select>
+        <input type="submit" value="Submit">
 
         
 
