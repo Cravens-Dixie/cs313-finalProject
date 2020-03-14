@@ -8,6 +8,9 @@ const pool = new Pool({connectionString: connectionString});
 app.set("port", (process.env.PORT || 5000));
 
 //endpoints
+
+app.get('/', (req, res) => res.render('pages/index'));
+app.post("/logIn", logIn);
 app.get("/seeCollection", seeCollection);
 
 
@@ -58,3 +61,6 @@ function seeCollectionFromDb(table, callback) {
         callback(null, result.rows)
     });
 }
+function logIn() {
+
+};
