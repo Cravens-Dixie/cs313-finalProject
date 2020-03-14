@@ -38,6 +38,7 @@ VALUES ('Stamp Sets', 'Dixie Cravens', 'Letter-It Birthday', 'sentiment scripty'
 ('Stamp Sets', 'Dixie Cravens', 'Striped', 'background line', 'The Stamp Market', '18.00'),
 ('Stamp Sets', 'Dixie Cravens', 'Leaf Canopy', 'nature leaves', 'Altenew', '22.99');
 
+SELECT item_name, item_description FROM collections WHERE collection_name = 'Squishmallows';
 
 
 

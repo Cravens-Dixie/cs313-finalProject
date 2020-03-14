@@ -43,9 +43,9 @@ function seeCollection(req, res) {
 }
 
 function seeCollectionFromDb(collection, callback) {
-    console.log("GetCollectionFromDB called with table: ", collection);
+    console.log("GetCollectionFromDB called with collection: ", collection);
     
-    var sql = "SELECT item_name, item_description FROM collections WHERE collection_name = $1::string";
+    var sql = "SELECT item_name, item_description FROM collections WHERE collection_name = $1::text";
     // var sql = buildSql;
     var params = [collection];
 
