@@ -10,7 +10,7 @@ app.set("port", (process.env.PORT || 5000));
 //endpoints
 
 app.get('/', (req, res) => res.render('pages/index'));
-app.post("/logIn", logIn);
+// app.post("/logIn", logIn);
 app.get("/seeCollection", seeCollection);
 
 
@@ -28,7 +28,7 @@ function seeCollection(req, res) {
     var collection = req.query.collection;
     console.log("Retrieving collection ", collection);
 
-    seeCollectionFromDb(table, function(error, result) {
+    seeCollectionFromDb(collection, function(error, result) {
         console.log("Back from the seeCollectionFromDb function with result: ", result);
         
         if (error) {
@@ -45,12 +45,11 @@ function seeCollection(req, res) {
 function seeCollectionFromDb(collection, callback) {
     console.log("GetCollectionFromDB called with table: ", collection);
     
+    var sql = "SELECT item_name, item_description FROM collections WHERE collection_name = $1::string";
+    // var sql = buildSql;
+    var params = [collection];
 
-    var buildSql = "SELECT item_name, item_description FROM " + collection + ";";
-    var sql = buildSql;
-    //var params = [table];
-
-    pool.query(sql, function(err, result) {
+    pool.query(sql, params, function(err, result) {
         if (err) {
             console.log("An error occurred with the DB");
             console.log(err);
@@ -58,7 +57,7 @@ function seeCollectionFromDb(collection, callback) {
         }
         console.log("Found DB result: " + JSON.stringify(result.rows));
 
-        callback(null, result.rows)
+        callback(null, result.rows);
     });
 }
 
