@@ -18,17 +18,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('pages/index'));
 // app.post("/logIn", logIn);
-app.get("/seeCollection", seeCollection);
+//app.get("/seeCollection", seeCollection);
 
-// app.get("/seeCollection", (req, res) => {
+app.get("/seeCollection", (req, res) => {
    
-//     const collection = req.query.collection;
-//     const result = seeCollection(collection);
-//     const params = {collection: collection, result: result};
+    const collection = req.query.collection;
+    const result = seeCollection(collection);
+    const params = {collection: collection, result: result};
 
-//     res.render("showCollection", params);
+    res.render("showCollection", params);
 
-// });
+});
 
 
 
@@ -39,25 +39,27 @@ app.listen(app.get("port"), function() {
 //functions
 
 
-function seeCollection(req, res) {
+function seeCollection(collection, res, req) {
     
-    const collection = req.query.collection;
-    
+    var result;
+    console.log("Retrieving collection ", collection);
 
     seeCollectionFromDb(collection, function(error, result) {
         console.log("Back from the seeCollectionFromDb function with result: ", result);
-
-        if (error || result == null) {
+        
+        if (error) {
             res.status(500).json({success: false, data: error});
         }else {
-            res.json(result); 
+            //maybe a res.redirect("pages/index", JSON.stringify(result.rows) ?
+            //res.render("pages/index", JSON.stringify(result.rows) )
+            //return result;
+            res.json(result);
+            
         }
-           
+        
     });
-    const result = JSON.stringify(result);
-    const params = {collection: collection, result: result};
-    console.log("Retrieving collection ", collection);
-    res.render("showCollection", params);  
+    return result;
+    
 }
 
 function seeCollectionFromDb(collection, callback) {
