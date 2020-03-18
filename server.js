@@ -8,8 +8,9 @@ const pool = new Pool({connectionString: connectionString});
 
 app.set("port", (process.env.PORT || 5000));
 
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended : true}));
+
+app.use(express.urlencoded({ extended : true}));
+app.use(express.json());
 
 //endpoints
 app.use(express.static(path.join(__dirname, 'public')));
@@ -17,11 +18,26 @@ app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('pages/index'));
-// app.post("/logIn", logIn);
-//app.get("/seeCollection", seeCollection);
+
+app.get("/seeCollections", function(req, res){
+//get all collections by collection_owner upon successful login
+//need a owner
+var owner = req.query.owner;
+console.log("Getting all collections by owner:" + owner);
+
+var results = {
+    collections: [
+        {collection_owner:owner, collection_name:"Squishmallows"},
+        {collection_owner:owner, collection_name:"Puppy Pals"}
+    ]
+};
+
+res.json(results);
+});
 
 app.get("/seeCollection", (req, res) => {
-   
+  //get a single collection by collection_name 
+  console.log("Getting a collection by name:")
     const collection = req.query.collection;
     const result = seeCollection(collection);
     const params = {collection: collection, result: result};
@@ -29,6 +45,42 @@ app.get("/seeCollection", (req, res) => {
     res.render("showCollection", params);
 
 });
+
+app.post("/logIn", function(req, res) {
+    //validate a user and password
+    console.log("Validating an owner with name and password ");
+
+    res.json({success:true});
+});
+
+app.post("/newUser", function(req, res) {
+    //Create a new user and password
+    console.log("Creating a new owner");
+
+    res.json({success:true});
+});
+
+app.post("/newCollection", function(req, res) {
+    //create a new collection with collection_name, collection_owner, item_name, item_description, etc
+    console.log("Creating a new collection");
+
+    res.json({success:true});
+});
+
+app.post("/newItem", function(req, res) {
+    //create a new item in a collection with collection_name, collection_owner, item_name, item_description, etc
+    var name = req.body.name;
+    var owner = "Dixie";//req.body.owner;
+    var itemName = req.body.itemName;
+    var itemDesc = req.body.itemDesc;
+    var params = {name: name, owner: owner};
+    //var params = {name: name, owner: owner, itemName: itemName, itemDesc: itemDesc};
+    //console.log("Creating new collection item with name: " + name + 
+   // ", owner: " + owner + ", item name: " + itemName + ", and item description: " + itemDesc);
+    console.log("Creating new collection item with parameters: " + name);                 
+
+    res.json({success:true});
+})
 
 
 
