@@ -5,7 +5,8 @@ const pool = new Pool({connectionString: connectionString});
 
 function searchForUser(userName, password, callback) {
     //validate a user and password
-    var results = {user:[{userName: "Dixie Cravens", password: "passWORD"}]};
+    console.log("Searching DB for username and password: " + userName + " " + password)
+    var results = {user:[{userName: userName, password: password}]};
 
     callback(null, results);
 }

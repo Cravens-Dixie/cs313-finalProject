@@ -3,16 +3,31 @@
 //take the user to /logIn
 function submitUser() {
     console.log("Verifying user");
-    var name = $("#name").val();
+    var userName = $("#name").val();
     var password = $("#password").val();
-    console.log("Name: " + name + "and password: " + password);
+    console.log("Name: " + userName + " and password: " + password);
 
-    $.post("/logIn", {name: name, password: password}, function(data) {
-        console.log("Back from server with:");
-        console.log(data);
+     $.get("/logIn", {userName: userName, password: password}, function(data) {
+         console.log("Back from server with:");
+         console.log(data);
 
+         var owner = data.user[0].userName;
+
+        $.get("/seeCollections", {owner: owner}, function(data) {
+            console.log("Back from server with: ");
+            console.log(data);
+
+            for (var i = 0; i < data.collections.length; i++) {
+                var collectionName = data.collections[i].collection_name;
+
+                $("#collectionName")
+                .append("<option value=" + collectionName + ">" + collectionName + "</option>");
+            };
+
+        });
         
-    })
+    });
+    
 
 }
 
@@ -22,15 +37,17 @@ function chooseCollection() {
     var collection = $("#collectionName").val();
     console.log("Collection: " + collection); 
 
-    $.get("/seeCollection", {collection: collection}, function(data) {
-        console.log("Back from server with:");
-        console.log(data);
+    // $.get("/seeCollection", {collection: collection}, function(data) {
+    //     console.log("Back from server with:");
+    //     console.log(data);
 
-        for (var i = 0; i < data.list.length; i++) {
-            var collectionItem = data.list[i];
+    //     for (var i = 0; i < data.list.length; i++) {
+    //         var collectionItem = data.list[i];
     
-            $("#collectionResults").append("<li>" + collectionItem.item_name + " " + collectionItem.item_description + "</li>");
-        }
-    })
+    //         $("#collectionResults").append("<li>" + collectionItem.item_name + " " + collectionItem.item_description + "</li>");
+    //     }
+
+        
+    // })
     
 }

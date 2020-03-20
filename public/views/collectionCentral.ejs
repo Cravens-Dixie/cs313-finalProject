@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="collectionCentral-clientside.js"></script>
+    <script src="views/collectionCentral-clientside.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -16,19 +16,15 @@
         <input type="text" id="name" name="name"><br> 
         <label for="password ">Password:</label><br>
         <input type="text" id="password" name="password"><br>
-        <input type="button" name="submit_form" id="btn_submit" value="Log In" onclick="submitUser">  
+        <input type="button" name="submit_form" id="btn_submit" value="Log In" onclick="submitUser()">  
     </form> 
 
     <p>Please select a collection:</p>
     <!-- TODO Create collections dynamically based on the log-in -->
     <form action="#" method="GET" id="chooseCollection">
-        <select name='collection' id="collectionName">
-            <option value='Squishmallows'>Squishmallows</option>
-            <option value='Stamp Sets'>Stamp Sets</option>
-            <option value='collection3' disabled>Something Cool</option>
-            <option value='collection4' disabled>Something Very Cool</option>
+        <select name='collection' id="collectionName"><!--dynamically created with submitUser()-->
         </select>
-        <input type="button" name="choose_collection" id="select_btn" value="Select Collection" onclick="chooseCollection">
+        <input type="button" name="choose_collection" id="select_btn" value="Select Collection" onclick="chooseCollection()">
 
     </form>
     <div>

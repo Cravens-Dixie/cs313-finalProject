@@ -1,3 +1,4 @@
+--final project DB is on heroku serene-hamlet-16817
 CREATE TABLE collections (
     id SERIAL PRIMARY KEY,
     collection_name varchar(100) NOT NULL,
