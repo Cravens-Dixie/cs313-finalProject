@@ -63,7 +63,7 @@ function createItem(req, res) {
 
 module.exports = {
     seeCollections: seeCollections,
-    seeCollection: seeCollections,
+    seeCollection: seeCollection,
     createCollection: createCollection,
     createItem: createItem
 
