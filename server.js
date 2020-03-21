@@ -9,7 +9,7 @@ const userController = require("./controllers/userController.js");
 
 const PORT = process.env.PORT || 5000;
 
-app.use(express.static(path.join(__dirname, 'public'))); //also tried ("public/views")
+app.use(express.static(path.join(__dirname, 'public'))); 
 //app.use(express.static('public'));
 app.use(express.urlencoded({ extended : true}));
 app.use(express.json());
@@ -17,7 +17,7 @@ app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'ejs');
 
 //endpoints
-app.get('/', (req, res) => res.render('collectionCentral'));//also tried("collectionCentral") &("collectionCentral.html") 
+app.get('/', (req, res) => res.render('collectionCentral'));
 app.get("/seeCollections", collectionController.seeCollections);
 app.get("/seeCollection", collectionController.seeCollection);
 app.post("/newCollection", collectionController.createCollection);

@@ -7,15 +7,21 @@ function getCollectionByName(collection, callback) {
     var params = [collection];
     console.log("Retrieving collection from DB with collection name: " + collection);
 
-    pool.query(sql, params, function(err, result) {
+    pool.query(sql, params, function(err, db_results) {
         if (err) {
             console.log("An error occurred with the DB");
             console.log(err);
             callback(err, null);
+        }else {
+            console.log("Found DB results: ");
+            console.log(db_results); 
+            
+            var results = {
+                list:db_results.rows
+            };
+            callback(null, results);
         }
-        console.log("Found DB result: " + JSON.stringify(result.rows));
-
-        callback(null, result.rows);
+ 
     });
    
     callback(result);
