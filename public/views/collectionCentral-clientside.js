@@ -45,7 +45,7 @@ function chooseCollection() {
          for (var i = 0; i < data.collection.length; i++) {
              var collectionItem = data.collection[i];
             
-             $("#collectionResults").append("<li>" + collectionItem.item_name + " " + collectionItem.item_description + "</li>");
+             $("#collectionResults").append("<li>" + collectionItem.item_name + " -- " + collectionItem.item_description + "</li>");
             
          };
 
