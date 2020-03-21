@@ -26,7 +26,7 @@ CREATE TABLE collection_owners(
 INSERT INTO collection_owners(username, password)
 VALUES ('Dixie Cravens', crypt('cs313', gen_salt('bf')));
 INSERT INTO collection_owners(username, password)
-VALUES ('Catherine Cravens', crypt('jinx', gen_salt('bf')));
+VALUES ('Catherine Cravens', crypt('cs313', gen_salt('bf')));
 
 --insert into collections table
 INSERT INTO collections(collection_name, collection_owner, item_name, item_description, size, price_paid)

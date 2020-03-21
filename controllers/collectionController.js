@@ -15,15 +15,15 @@ function seeCollections(req, res){
 
 function seeCollection(req, res) {
     //get a single collection by collection_name 
-    const collection = req.query.collection; 
+    var collection = req.query.collection; 
+    console.log("get a single collection by collection_name");
 
     collectionModels.getCollectionByName(collection, function(results) {
-        console.log("Getting a collection by name:")
-        res.json(results);
-        //res.render("showCollection", results);
+        console.log("Getting a collection by name: " + collection);
+        res.json(results);//croaking here...null
     });
  
-};
+}
 
 function createCollection(req, res) {
     //create a new collection with collection_name, collection_owner, item_name, item_description, etc
@@ -37,7 +37,7 @@ function createCollection(req, res) {
         res.json(results);
     });
     
-};
+}
 
 function createItem(req, res) {
     //create a new item in a collection with collection_name, collection_owner, item_name, item_description, etc
@@ -55,7 +55,7 @@ function createItem(req, res) {
         res.json(results);
     });
     
-};
+}
 
 
     

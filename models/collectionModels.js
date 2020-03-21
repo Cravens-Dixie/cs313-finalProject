@@ -1,30 +1,40 @@
 const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
+
 const pool = new Pool({connectionString: connectionString});
 
 function getCollectionByName(collection, callback) {
-    var sql = "SELECT item_name, item_description FROM collections WHERE collection_name = $1::text";
-    var params = [collection];
-    console.log("Retrieving collection from DB with collection name: " + collection);
+     var sql = "SELECT item_name, item_description FROM collections WHERE collection_name = $1::text";
+     var params = [collection];
+     console.log("Retrieving collection from DB with collection name: " + collection);
 
-    pool.query(sql, params, function(err, db_results) {
+     pool.query(sql, params, function(err, db_results) {
         if (err) {
             console.log("An error occurred with the DB");
             console.log(err);
             callback(err, null);
-        }else {
-            console.log("Found DB results: ");
-            console.log(db_results); 
-            
-            var results = {
-                list:db_results.rows
-            };
-            callback(null, results);
-        }
- 
+        } else {
+           console.log("Found DB results: ");
+           console.log(db_results); 
+           
+           var results = {
+               collection:db_results.rows
+           };
+
+           callback(results);//***Not returning results */ returns results to collectionController.seeCollection()
+           console.log("Returning db results for " + collection);
+       }
+
     });
-   
-    callback(result);
+    
+    // var results = {
+    //     collection: [
+    //         {id:1, item_name: "Bunny", item_description: "brown rabbit"},
+    //         {id:2, item_name: "Oscar", item_description: "black dog"},
+    //         {id:3, item_name: "Louie", item_description: "blue dog"}
+    //     ]
+    // };
+    // callback(results);//***not defined */
     
 };
 
