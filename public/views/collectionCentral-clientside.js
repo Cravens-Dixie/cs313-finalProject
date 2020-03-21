@@ -21,7 +21,7 @@ function submitUser() {
                 var collectionName = data.collection[i].collection_name;
 
                 $("#collectionName")
-                .append("<option value=" + collectionName + ">" + collectionName + "</option>");
+                .append("<option>" + collectionName + "</option>");
             };
 
         });
