@@ -27,28 +27,32 @@ function getCollectionByName(collection, callback) {
 
     });
     
-    // var results = {
-    //     collection: [
-    //         {id:1, item_name: "Bunny", item_description: "brown rabbit"},
-    //         {id:2, item_name: "Oscar", item_description: "black dog"},
-    //         {id:3, item_name: "Louie", item_description: "blue dog"}
-    //     ]
-    // };
-    // callback(results);//***not defined */
-    
 };
 
 function getCollectionByOwner(owner, callback) {
+    var sql = "SELECT DISTINCT collection_name FROM collections WHERE collection_owner = $1::text";
+    var params = [owner];
     console.log("Get collection from DB by owner: " + owner);
     
-    
-    var results = {
-        collections: [
-            {collection_owner:owner, collection_name:"Squishmallows"},
-            {collection_owner:owner, collection_name:"Puppy Pals"}
-        ]
-    };
-    callback(results);
+    pool.query(sql, params, function(err, db_results) {
+        if (err) {
+            console.log("An error occurred with the DB");
+            console.log(err);
+            callback(err, null);
+        } else {
+           console.log("Found DB results: ");
+           console.log(db_results); 
+           
+           var results = {
+               collection:db_results.rows
+           };
+
+           callback(results);// returns results to collectionController.seeCollections()
+           console.log("Returning db results for " + owner);
+       }
+
+    });
+ 
 };
 
 function createNewCollection(name, owner, callback) {

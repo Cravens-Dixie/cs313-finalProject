@@ -70,7 +70,7 @@ VALUES ('Distress Ink', 'Dixie Cravens', 'Salty Ocean', 'blue', 'Ranger', 'mini'
 
 
 SELECT item_name, item_description FROM collections WHERE collection_name = 'Squishmallows';
-
+SELECT DISTINCT collection_name FROM collections WHERE collection_owner = 'Dixie Cravens';
 
 
 

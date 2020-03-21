@@ -1,6 +1,6 @@
 //runs the javascript functions from the collectionCentral.html page
 
-//take the user to /logIn
+//take the user to /logIn and then to /seeCollections
 function submitUser() {
     console.log("Verifying user");
     var userName = $("#name").val();
@@ -17,8 +17,8 @@ function submitUser() {
             console.log("Back from server with collections by owner: ");
             console.log(data);
 
-            for (var i = 0; i < data.collections.length; i++) {
-                var collectionName = data.collections[i].collection_name;
+            for (var i = 0; i < data.collection.length; i++) {
+                var collectionName = data.collection[i].collection_name;
 
                 $("#collectionName")
                 .append("<option value=" + collectionName + ">" + collectionName + "</option>");
