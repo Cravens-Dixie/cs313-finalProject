@@ -37,17 +37,17 @@ function chooseCollection() {
     var collection = $("#collectionName").val();
     console.log("Collection: " + collection); 
 
-    // $.get("/seeCollection", {collection: collection}, function(data) {
-    //     console.log("Back from server with:");
-    //     console.log(data);
+    $.get("/seeCollection", {collection: collection}, function(data) {
+        console.log("Back from server with the collection:" );
+        console.log(data);
 
-    //     for (var i = 0; i < data.list.length; i++) {
-    //         var collectionItem = data.list[i];
+         for (var i = 0; i < data.list.length; i++) {
+             var collectionItem = data.list[i];
     
-    //         $("#collectionResults").append("<li>" + collectionItem.item_name + " " + collectionItem.item_description + "</li>");
-    //     }
+             $("#collectionResults").append("<h2>Collection:" + collection + "</h2><ul><li>" + collectionItem.item_name + " " + collectionItem.item_description + "</li></ul>");
+         };
 
         
-    // })
+     });
     
 }
