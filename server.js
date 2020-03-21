@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 const path = require('path');
 const url = require('url');
+require('dotenv').config();
 
 const collectionController = require("./controllers/collectionController.js");
 const userController = require("./controllers/userController.js");

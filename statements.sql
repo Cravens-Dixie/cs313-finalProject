@@ -16,11 +16,17 @@ CREATE TABLE collections (
 --create a user table for name and password
 -- https://x-team.com/blog/storing-secure-passwords-with-postgresql/ or https://blog.dbi-services.com/securely-store-passwords-in-postgresql/
 CREATE EXTENSION pgcrypto; 
-CREATE TABLE owners(
+CREATE TABLE collection_owners(
     id SERIAL PRIMARY KEY,
   username TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL
 );
+
+--insert into collection_owners table
+INSERT INTO collection_owners(username, password)
+VALUES ('Dixie Cravens', crypt('cs313', gen_salt('bf')));
+INSERT INTO collection_owners(username, password)
+VALUES ('Catherine Cravens', crypt('jinx', gen_salt('bf')));
 
 --insert into collections table
 INSERT INTO collections(collection_name, collection_owner, item_name, item_description, size, price_paid)
@@ -39,6 +45,30 @@ VALUES ('Stamp Sets', 'Dixie Cravens', 'Letter-It Birthday', 'sentiment scripty'
 ('Stamp Sets', 'Dixie Cravens', 'Striped', 'background line', 'The Stamp Market', '18.00'),
 ('Stamp Sets', 'Dixie Cravens', 'Leaf Canopy', 'nature leaves', 'Altenew', '22.99');
 
+INSERT INTO collections(collection_name, collection_owner, item_name, item_description, manufacturer, price_paid)
+VALUES ('Steel Dies', 'Dixie Cravens', 'Stitched Circles Cover Panel', 'background dots', 'Reverse Confetti', '25.00');
+INSERT INTO collections(collection_name, collection_owner, item_name, item_description, manufacturer, price_paid)
+VALUES ('Steel Dies', 'Dixie Cravens', 'Rose Flurries', 'floral layering', 'Altenew', '29.00'),
+('Steel Dies', 'Dixie Cravens', 'Garden Picks', 'floral layering', 'Altenew', '29.00'),
+('Steel Dies', 'Dixie Cravens', 'Rainbow Wishes', 'rainbow weather landscape matching', 'Concord & 9th', '12.49'),
+('Steel Dies', 'Dixie Cravens', 'Wonderful Florals', 'floral sentiment matching', 'Concord & 9th', '6.49'),
+('Steel Dies', 'Dixie Cravens', 'Skinny Upper Alpha', 'alphabet', 'The Stamp Market', '42.79');
+
+INSERT INTO collections(collection_name, collection_owner, item_name, item_description, manufacturer, size, price_paid)
+VALUES ('Distress Ink', 'Dixie Cravens', 'Broken China', 'blue', 'Ranger', 'mini', '3.99');
+INSERT INTO collections(collection_name, collection_owner, item_name, item_description, manufacturer, size, price_paid)
+VALUES ('Distress Ink', 'Dixie Cravens', 'Salty Ocean', 'blue', 'Ranger', 'mini', '3.99'),
+('Distress Ink', 'Dixie Cravens', 'Twisted Citron', 'green', 'Ranger', 'mini', '3.99'),
+('Distress Ink', 'Dixie Cravens', 'Mowed Lawn', 'green', 'Ranger', 'mini', '3.99'),
+('Distress Ink', 'Dixie Cravens', 'Mustard Seed', 'yellow', 'Ranger', 'mini', '3.99'),
+('Distress Ink', 'Dixie Cravens', 'Scattered Straw', 'yellow', 'Ranger', 'mini', '3.99'),
+('Distress Ink', 'Dixie Cravens', 'Peacock Feathers', 'blue', 'Ranger', 'full', '5.99'),
+('Distress Ink', 'Dixie Cravens', 'Peacock Feathers', 'blue', 'Ranger', 'mini', '3.99'),
+('Distress Ink', 'Dixie Cravens', 'Picked Raspberry', 'pink', 'Ranger', 'full', '5.99'),
+('Distress Ink', 'Dixie Cravens', 'Picked Raspberry', 'pink', 'Ranger', 'mini', '3.99');
+
+
+
 SELECT item_name, item_description FROM collections WHERE collection_name = 'Squishmallows';
 
 
@@ -46,7 +76,7 @@ SELECT item_name, item_description FROM collections WHERE collection_name = 'Squ
 
 
 
-
+--not using this format for project
 INSERT INTO squishmallows(name, description, size, price_paid)
 VALUES ('Lavendar', 'purple rainbow cat caticorn', '16', '10.00');
 
