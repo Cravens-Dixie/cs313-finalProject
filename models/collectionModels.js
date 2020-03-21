@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-const connectionString = process.env.DATABASE_URL || "postgres://catherine:jinx@localhost:5432/collection";
+const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
 function getCollectionByName(collection, callback) {
