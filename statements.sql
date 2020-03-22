@@ -76,7 +76,10 @@ SELECT DISTINCT collection_name FROM collections WHERE collection_owner = 'Dixie
 SELECT (password = crypt('cs313', password)) AS pwd_match
 FROM collection_owners
 WHERE username = 'Dixie Cravens';
---searchForUser(without password)
+
+--addItem
+INSERT INTO collections(collection_name, collection_owner, item_name, item_description)
+VALUES ('Distress Ink', 'Dixie Cravens', 'Broken China', 'blue'');
 
 
 

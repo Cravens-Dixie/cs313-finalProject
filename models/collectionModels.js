@@ -63,9 +63,30 @@ function createNewCollection(name, owner, callback) {
     callback(results);
 };
 
-function createNewItem(name, owner, callback) {
+function createNewItem(name, owner, itemName, itemDesc, callback) {
+    var sql = "INSERT INTO collections(collection_name, collection_owner, item_name, item_description) VALUES ($1::text, $2::text, $3::text, $4::text)";
+    var params = [name, owner, itemName, itemDesc];
     console.log("Created a new item in the collection: " + name + " with owner: " + owner);
-    results = ({name:name, owner:owner});
+
+    pool.query(sql, params, function(err, db_results) {
+        if (err) {
+            console.log("An error occurred with the DB");
+            console.log(err);
+            callback(err, null);
+        } else {
+           console.log("Inserted an item in DB: ");
+           console.log(db_results);
+
+           results = ({item: itemName, Add: "successful"}); 
+           
+          
+
+           callback(results);// returns results to collectionController.createItem()
+           
+       }
+
+    });
+    results = ({name:name, owner:owner, itemName, itemDesc});
 
     callback(results);
 };

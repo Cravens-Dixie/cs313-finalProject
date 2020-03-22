@@ -15,7 +15,7 @@ function searchForUser(userName, userPassword, callback) {
             console.log(err);
             callback(err, null);
         } else {
-            if (result = 'f') {
+            if (db_result = 'f') {
                 console.log("Password or username is not a match.");
                 var results = ("User Name or password does not match. Please try again.");
 
