@@ -20,7 +20,7 @@ function seeCollection(req, res) {
 
     collectionModels.getCollectionByName(collection, function(results) {
         console.log("Getting a collection by name: " + collection);
-        res.json(results);//croaking here...null
+        res.json(results);
     });
  
 }

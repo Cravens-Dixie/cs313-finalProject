@@ -3,10 +3,10 @@ const userModel = require("../models/userModels");
 function validateUser(req, res) {
     //validate a user and password
     var userName = req.query.userName; //comes from query
-    var password = req.query.password; // comes from query
-    console.log("Validating an owner with name and password " + userName + " " + password);
+    var userPassword = req.query.userPassword; // comes from query
+    console.log("Validating an owner with name and password " + userName + " " + userPassword);
 
-    userModel.searchForUser(userName, password, function(error, results){
+    userModel.searchForUser(userName, userPassword, function(error, results){
         res.json(results);
     });
 }

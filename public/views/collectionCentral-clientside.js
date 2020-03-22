@@ -4,14 +4,14 @@
 function submitUser() {
     console.log("Verifying user");
     var userName = $("#name").val();
-    var password = $("#password").val();
-    console.log("Name: " + userName + " and password: " + password);
+    var userPassword = $("#password").val();
+    console.log("Name: " + userName + " and password: " + userPassword);
 
-     $.get("/logIn", {userName: userName, password: password}, function(data) {
+     $.get("/logIn", {userName: userName, userPassword: userPassword}, function(data) {
          console.log("Back from server with user data:");
          console.log(data);
 
-         var owner = data.user[0].userName;
+         var owner = userName;
 
         $.get("/seeCollections", {owner: owner}, function(data) {
             console.log("Back from server with collections by owner: ");

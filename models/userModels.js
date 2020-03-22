@@ -3,12 +3,39 @@ const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
-function searchForUser(userName, password, callback) {
+function searchForUser(userName, userPassword, callback) {
     //validate a user and password
-    console.log("Searching DB for username and password: " + userName + " " + password)
-    var results = {user:[{userName: userName, password: password}]};
+    var sql = "SELECT (password = crypt($2::text, password)) AS pwd_match FROM collection_owners WHERE username = $1::text";
+    var params = [userName, userPassword];
+    console.log("Searching DB for matching username and password: " + userName + " " + userPassword)
 
-    callback(null, results);
+    pool.query(sql, params, function(err, db_results) {
+        if (err) {
+            console.log("An error occurred with the DB");
+            console.log(err);
+            callback(err, null);
+        } else {
+            if (result = 'f') {
+                console.log("Password or username is not a match.");
+                var results = ("User Name or password does not match. Please try again.");
+
+            } else {
+                console.log("Found DB results: ");
+                console.log(db_results); 
+           
+                var results = userName;
+                console.log("Returning user name: " + userName);
+           };
+
+           callback(null,results);// returns results to userController.validateUser()
+           
+       }
+
+    });
+
+    //  var results = {user:[{userName: userName, password: password}]};
+
+    //  callback(null, results);
 }
 
 function insertNewUser(userName, password, callback) {

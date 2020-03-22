@@ -68,10 +68,15 @@ VALUES ('Distress Ink', 'Dixie Cravens', 'Salty Ocean', 'blue', 'Ranger', 'mini'
 ('Distress Ink', 'Dixie Cravens', 'Picked Raspberry', 'pink', 'Ranger', 'mini', '3.99');
 
 
-
+--getCollectionByName
 SELECT item_name, item_description FROM collections WHERE collection_name = 'Squishmallows';
+--getCollectionByOwner
 SELECT DISTINCT collection_name FROM collections WHERE collection_owner = 'Dixie Cravens';
-
+--searchForUser(with password)
+SELECT (password = crypt('cs313', password)) AS pwd_match
+FROM collection_owners
+WHERE username = 'Dixie Cravens';
+--searchForUser(without password)
 
 
 
