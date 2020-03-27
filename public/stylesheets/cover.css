@@ -3,6 +3,17 @@ a:focus,
 a:hover {
   color: #fff;
 }
+form,
+#newCollect {
+  color: #333;
+}
+
+form label {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
 
 /* Custom default button */
 .btn-default,

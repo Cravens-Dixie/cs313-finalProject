@@ -21,7 +21,7 @@
         <div class="site-wrapper-inner">
             <div class="cover-container">
                 <div class="inner cover">
-                    <div class="container-fluid">
+                    <!--<div class="container-fluid">-->
                         <h1>Collection Central</h1>
                         <h2>What are you collecting?</h2>
                         <p>Please Log In to see your collections or Sign Up to get started:</p>
@@ -30,13 +30,13 @@
                             <label for="name ">Name:</label><br>
                             <input type="text" id="name" name="name"><br> 
                             <label for="password ">Password:</label><br>
-                            <input type="text" id="password" name="password"><br>
+                            <input type="text" id="password" name="password"><br><br>
                             <input type="button" name="submit_form" id="btn_submit" value="Log In" onclick="submitUser()">
                             <input type="button" name="newPerson_form" id="newPerson_submit" value="Sign Me Up!" onclick="newUser()">  
                         </form> 
                         <div id="clientResults"></div>
-                        </div>
-                    <div class="container-fluid">
+                        <!-- </div> -->
+                    <!-- <div class="container-fluid"> -->
                         <h3>You can see existing collections or start a new collection</h3>
                         <p>Please select a collection:</p>
                         <!-- TODO Create collections dynamically based on the log-in -->
@@ -52,7 +52,7 @@
                         <div id="addItem"><!--dynamically created with chooseCollection()--></div>
                         <div id="addResults"><!--dynamically created with addItemtoDB()--></div>
                         <div id="newCollectForm"></div>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div> 
         </div>
