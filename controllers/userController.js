@@ -13,8 +13,8 @@ function validateUser(req, res) {
 
 function createNewUser(req, res) {
     //Create a new user and password
-    var userName = req.query.userName; //comes from query
-    var password = req.query.password; // comes from query
+    var userName = req.body.userName; //comes from query
+    var password = req.body.password; // comes from query
     console.log("Creating a new owner");
 
     userModel.insertNewUser(userName, password, function(error, results) {

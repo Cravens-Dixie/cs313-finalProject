@@ -55,10 +55,10 @@ function getCollectionByOwner(owner, callback) {
  
 };
 
-function createNewCollection(name, owner, callback) {
-    console.log("Create a new collection in the DB with: " + name + " and " + owner);
-
-    results = ({name: name, owner: owner});
+function createNewCollection(name, owner, itemName, itemDesc, callback) {
+    console.log("Create a new collection in the DB named: " + name + " for " + owner);
+    var params = [name, owner, itemName, itemDesc];
+    results = ({name: name, owner: owner, itemName: itemName, itemDesc: itemDesc});
 
     callback(results);
 };

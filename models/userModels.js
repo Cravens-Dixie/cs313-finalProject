@@ -3,6 +3,10 @@ const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+
 function searchForUser(userName, userPassword, callback) {
     //validate a user and password
     var sql = "SELECT (password = crypt($2::text, password)) AS pwd_match FROM collection_owners WHERE username = $1::text";
@@ -14,32 +18,38 @@ function searchForUser(userName, userPassword, callback) {
             console.log("An error occurred with the DB");
             console.log(err);
             callback(err, null);
-        } else {
-            if (db_result = 'f') {
+        }else {
+            console.log("Here are the results you are looking for: " + db_results.rows);//not getting back results
+            if (db_results.rows.pwd_match == "false") {
                 console.log("Password or username is not a match.");
                 var results = ("User Name or password does not match. Please try again.");
-
-            } else {
+                callback(null, results);
+                $("#clientResults").append(results);
+            }else {
                 console.log("Found DB results: ");
                 console.log(db_results); 
            
                 var results = userName;
                 console.log("Returning user name: " + userName);
-           };
+            };
+        };
 
-           callback(null,results);// returns results to userController.validateUser()
+        callback(null, db_results);// returns results to userController.validateUser()
            
-       }
-
     });
-
-    //  var results = {user:[{userName: userName, password: password}]};
+//  var results = {user:[{userName: userName, password: password}]};
 
     //  callback(null, results);
-}
+};
+
+    
+
 
 function insertNewUser(userName, password, callback) {
     //Create a new user and password
+    //var sql = ""
+
+
     var results = {user:[{userName: "Cat Cravens", password: "catWORD"}]};
 
     callback(null, results); 

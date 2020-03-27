@@ -81,6 +81,52 @@ function addItemtoDB() {
         
         $("#addResults").append("<h4>Item Added!</h4>");
         $("#addResults").append("<p> Item:" + data.itemName + " Description: " +  data.itemDesc + "</p>");
+    }); 
+}
+
+function newUser() {
+    //need userName and userPassword
+    var userName = $("#name").val();
+    var userPassword = $("#password").val();
+
+    sessionStorage.setItem("collectionOwner", userName);
+
+    console.log("Name: " + userName + " and password: " + userPassword);
+
+    $.post("/newUser", {userName: userName, userPassword: userPassword},function(data){
+        $("#clientResults").append("Welcome " + userName + "! Please start a new collection.");
+        console.log(data);
+    });
+}
+
+function newCollection() {
+    var userName = sessionStorage.getItem("collectionOwner");
+    console.log("Lets create a new collection for " + userName);
+
+    $("#newCollectForm").append("<h4>You must provide one item in the collection to start a collection.</h4>");
+    $("#newCollectForm").append("<form action=\"#\" method=\"POST\" id=\"insertCollection\">" + 
+    "<label for=\"colName\"> Collection Name:</label><br>" + 
+    "<input type=\"text\" id=\"colName\" name=\"colName\"><br>" + 
+    "<label for=\"item\">Item Name:</label><br>" + 
+    "<input type=\"text\" id=\"item\" name=\"item\"><br>" +  
+    "<label for=\"desc\">Item description:</label><br>" + 
+    "<input type=\"text\" id=\"desc\" name=\"desc\"><br><br>" + 
+    "<input type=\"button\" name=\"submit_form\" id=\"col_submit\" value=\"Add Collection\" onclick=\"addCollectiontoDB()\"> " +  
+    "</form>");
+ 
+}
+
+function addCollectiontoDB() {
+    var name = $("#colName").val();
+    var owner = sessionStorage.getItem("collectionOwner");
+    var itemName = $("#item").val();
+    var itemDesc = $("#desc").val();
+
+    console.log("adding: " + owner + name + itemName, itemDesc);
+
+    $.post("/newCollection", {owner: owner, name: name, itemName: itemName, itemDesc: itemDesc}, function(data) {
+        console.log(data);
+        $("#addResults").append("<h4>Collection " + data.name + "  Added!</h4>");
     });
 }
 

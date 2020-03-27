@@ -29,11 +29,13 @@ function createCollection(req, res) {
     //create a new collection with collection_name, collection_owner, item_name, item_description, etc
     var name = req.body.name;
     var owner = req.body.owner;
-    var params = {name: name, owner: owner};
+    var itemName = req.body.itemName;
+    var itemDesc = req.body.itemDesc;
+   
 
-    console.log("Creating a new collection");
+    console.log("Creating a new collection with: " + name + owner + itemName + itemDesc);
 
-    collectionModels.createNewCollection(name, owner, function(results) {
+    collectionModels.createNewCollection(name, owner, itemName, itemDesc, function(results) {
         res.json(results);
     });
     
