@@ -101,9 +101,12 @@ function newUser() {
 }
 
 function newCollection() {
+    //need  to collect the collection_name, (collection_owner), item_name, and item_description from user
+    //will forward info by 'onclick' event to addCollectiontoDB()
     var userName = sessionStorage.getItem("collectionOwner");
     console.log("Lets create a new collection for " + userName);
 
+    //create and add the form to the collectionCentral.ejs page
     $("#newCollectForm").append("<h4>You must provide one item in the collection to start a collection.</h4>");
     $("#newCollectForm").append("<form action=\"#\" method=\"POST\" id=\"insertCollection\">" + 
     "<label for=\"colName\"> Collection Name:</label><br>" + 
