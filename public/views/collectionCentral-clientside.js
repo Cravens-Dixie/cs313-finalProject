@@ -10,6 +10,7 @@ function submitUser() {
      $.get("/logIn", {userName: userName, userPassword: userPassword}, function(data) {
          console.log("Back from server with user data:");
          console.log(data);
+         $("#addResults").append(data);
 
          var owner = userName;
 

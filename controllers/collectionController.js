@@ -49,7 +49,7 @@ function createItem(req, res) {
     var itemDesc = req.body.itemDesc;
     //var params = {name: name, owner: owner, item_name: itemName, itemDesc: itemDesc};
    
-    console.log("Creating new collection item with name: " + itemName + " and " + itemDesc + " for collection " + name)
+    console.log("Adding new item with name: " + itemName + " and " + itemDesc + " for collection " + name)
                    
     collectionModels.createNewItem(name, owner, itemName, itemDesc, function(results) {
         res.json(results);

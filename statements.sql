@@ -15,6 +15,7 @@ CREATE TABLE collections (
 
 --create a user table for name and password
 -- https://x-team.com/blog/storing-secure-passwords-with-postgresql/ or https://blog.dbi-services.com/securely-store-passwords-in-postgresql/
+--bcrypt: https://github.com/kelektiv/node.bcrypt.js#usage
 CREATE EXTENSION pgcrypto; 
 CREATE TABLE collection_owners(
     id SERIAL PRIMARY KEY,

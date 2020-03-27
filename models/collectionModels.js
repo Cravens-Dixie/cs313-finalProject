@@ -37,7 +37,7 @@ function getCollectionByOwner(owner, callback) {
     pool.query(sql, params, function(err, db_results) {
         if (err) {
             console.log("An error occurred with the DB");
-            console.log(err);
+            console.log(err); 
             callback(err, null);
         } else {
            console.log("Found DB results: ");
