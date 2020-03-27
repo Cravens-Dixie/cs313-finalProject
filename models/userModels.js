@@ -47,12 +47,26 @@ function searchForUser(userName, userPassword, callback) {
 
 function insertNewUser(userName, password, callback) {
     //Create a new user and password
-    //var sql = ""
+    var sql = "INSERT INTO collection_owners(username, password) VALUES ($1::text, crypt($2::text, gen_salt('bf')))";
+    var params = [userName, password]; 
+
+    pool.query(sql, params, function(err, db_results) {
+        if (err) {
+            console.log("An error occurred with the DB");
+            console.log(err);
+            callback(err, null);
+        }else {
+            console.log("New User: " + userName + "inserted into DB");
+            var results = userName;
+             callback(null, db_results);
+        };
+        callback (null, results); // returns results to userController.createNewUser()  
+    });
 
 
-    var results = {user:[{userName: "Cat Cravens", password: "catWORD"}]};
+    //var results = {user:[{userName: "Cat Cravens", password: "catWORD"}]};
 
-    callback(null, results); 
+    //callback(null, results); 
 };
 
 module.exports = {
