@@ -64,7 +64,8 @@ function chooseCollection() {
         "<input type=\"text\" id=\"itemName\" name=\"itemName\"><br>" +  
         "<label for=\"itemDesc\">Item description:</label><br>" + 
         "<input type=\"text\" id=\"itemDesc\" name=\"itemDesc\"><br>" + 
-        "<input type=\"button\" name=\"submit_form\" id=\"item_submit\" value=\"Add Item\" onclick=\"addItemtoDB()\"> " +  
+        "<input type=\"button\" name=\"submit_form\" id=\"item_submit\" value=\"Add Item\" onclick=\"addItemtoDB()\"> " +
+        "<input type=\"reset\" value=\"Reset Form\">"  +
         "</form>");
      });
     
@@ -81,7 +82,7 @@ function addItemtoDB() {
         console.log("Back from database with a successful add");
         console.log(data);//success or fail
         
-        $("#addResults").append("<h4>Item Added!</h4>");
+        $("#addResults").empty().append("<h4>Item Added!</h4>");
         $("#addResults").append("<p> Item:" + data.item + " Description: " +  data.description + "</p>");
         $("#collectionResults").append("<li>" + data.item + " -- " + data.description + "</li>");
     }); 

@@ -107,9 +107,9 @@ function createNewItem(name, owner, itemName, itemDesc, callback) {
        }
 
     });
-    results = ({name:name, owner:owner, item:itemName, description:itemDesc});
+    //results = ({name:name, owner:owner, item:itemName, description:itemDesc});
 
-    callback(results);
+    //callback(results);
 };
 
 module.exports = {

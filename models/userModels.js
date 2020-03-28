@@ -71,16 +71,16 @@ function insertNewUser(userName, password, callback) {
                 console.log("New User: " + userName + " inserted into DB");
                 console.log(db_results);
 
-                
-                callback(null, db_results);
+                var results = {user:userName};
+                callback(null, results);
             };
         //callback (null, results); // returns results to userController.createNewUser()  
         });
 
     });
     //var results = {user:[{userName: "Cat Cravens", password: "catWORD"}]};
-    var results = {user:userName};
-    callback(null, results); 
+    //var results = {user:userName};
+    //callback(null, results); 
 };
 
 module.exports = {
