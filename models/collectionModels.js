@@ -98,7 +98,7 @@ function createNewItem(name, owner, itemName, itemDesc, callback) {
            console.log("Inserted an item in DB: ");
            console.log(db_results);
 
-           results = ({item: itemName, Add: "successful"}); 
+           results = ({name:name, owner:owner, item:itemName, description:itemDesc}); 
            
           
 
@@ -107,7 +107,7 @@ function createNewItem(name, owner, itemName, itemDesc, callback) {
        }
 
     });
-    //results = ({name:name, owner:owner, itemName, itemDesc});
+    results = ({name:name, owner:owner, item:itemName, description:itemDesc});
 
     callback(results);
 };

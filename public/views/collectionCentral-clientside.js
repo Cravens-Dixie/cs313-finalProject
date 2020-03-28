@@ -46,7 +46,8 @@ function chooseCollection() {
         console.log(data);
 
         sessionStorage.setItem("collectionName", collection);
-        
+
+        $("#collectionResults").empty();
         $("#collectionResults").append("<h2>Collection:" + collection + "</h2><ul>");
 
          for (var i = 0; i < data.collection.length; i++) {
@@ -58,8 +59,8 @@ function chooseCollection() {
 
         $("#collectionResults").append("</ul>");
         $("#addItem").append("<h3> Add an item to this collection</h3>");
-        $("#addItem").append("<form action=\"#\" method=\"POST\" id=\"insertItem\">" + 
-        "<label for=\"itemName\">Name:</label><br>" + 
+        $("#addItem").append("<form action=\"#\" method=\"POST\" id=\"insertItem\">"); 
+        $("#addItem").empty().append("<label for=\"itemName\">Name:</label><br>" + 
         "<input type=\"text\" id=\"itemName\" name=\"itemName\"><br>" +  
         "<label for=\"itemDesc\">Item description:</label><br>" + 
         "<input type=\"text\" id=\"itemDesc\" name=\"itemDesc\"><br>" + 
@@ -81,7 +82,8 @@ function addItemtoDB() {
         console.log(data);//success or fail
         
         $("#addResults").append("<h4>Item Added!</h4>");
-        $("#addResults").append("<p> Item:" + data.itemName + " Description: " +  data.itemDesc + "</p>");
+        $("#addResults").append("<p> Item:" + data.item + " Description: " +  data.description + "</p>");
+        $("#collectionResults").append("<li>" + data.item + " -- " + data.description + "</li>");
     }); 
 }
 

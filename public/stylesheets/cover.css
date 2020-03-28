@@ -4,6 +4,7 @@ a:hover {
   color: #fff;
 }
 form,
+input,
 #newCollect {
   color: #333;
 }
