@@ -58,9 +58,9 @@ function chooseCollection() {
          };
 
         $("#collectionResults").append("</ul>");
-        $("#addItem").append("<h3> Add an item to this collection</h3>");
+        $("#addItem").empty().append("<h3> Add an item to this collection</h3>");
         $("#addItem").append("<form action=\"#\" method=\"POST\" id=\"insertItem\">"); 
-        $("#addItem").empty().append("<label for=\"itemName\">Name:</label><br>" + 
+        $("#addItem").append("<label for=\"itemName\">Name:</label><br>" + 
         "<input type=\"text\" id=\"itemName\" name=\"itemName\"><br>" +  
         "<label for=\"itemDesc\">Item description:</label><br>" + 
         "<input type=\"text\" id=\"itemDesc\" name=\"itemDesc\"><br>" + 
