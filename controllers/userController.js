@@ -2,9 +2,8 @@ const userModel = require("../models/userModels");
 
 function validateUser(req, res) {
     //validate a user and password
-    var userName = req.body.userName; //comes from query
-    var userPassword = req.body.userPassword; // comes from query
-    console.log("Validating an owner with name and password " + userName + " " + userPassword);
+    var userName = req.body.userName; 
+    var userPassword = req.body.userPassword; 
 
     userModel.searchForUser(userName, userPassword, function(error, result){//returns results to cc-clientside submitUser()
         if(error||result == null) {
@@ -13,18 +12,15 @@ function validateUser(req, res) {
            
         }else {
             var message = ({success: true});
-            res.json(message);
-            
-        }
-        
+            res.json(message);   
+        } 
     });
 }
 
 function createNewUser(req, res) {
     //Create a new user and password
-    var userName = req.body.userName; //comes from post body
-    var password = req.body.userPassword; // comes from post body
-    console.log("Creating a new owner");
+    var userName = req.body.userName; 
+    var password = req.body.userPassword; 
 
     userModel.insertNewUser(userName, password, function(error, results) {
         res.json(results);
