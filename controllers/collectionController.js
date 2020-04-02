@@ -31,9 +31,6 @@ function createCollection(req, res) {
     var owner = req.body.owner;
     var itemName = req.body.itemName;
     var itemDesc = req.body.itemDesc;
-   
-
-    console.log("Creating a new collection with: " + name + owner + itemName + itemDesc);
 
     collectionModels.createNewCollection(name, owner, itemName, itemDesc, function(results) {
         var results = ({collection: name, owner: owner, item: itemName, description: itemDesc});
@@ -49,12 +46,9 @@ function createItem(req, res) {
     var itemName = req.body.itemName;
     var itemDesc = req.body.itemDesc;
     //var params = {name: name, owner: owner, item_name: itemName, itemDesc: itemDesc};
-   
-    console.log("Adding new item with name: " + itemName + " and " + itemDesc + " for collection " + name)
                    
     collectionModels.createNewItem(name, owner, itemName, itemDesc, function(results) {
-        results = ({name:name, owner:owner, item:itemName, description:itemDesc}); 
-           
+        results = ({name:name, owner:owner, item:itemName, description:itemDesc});   
         res.json(results);
     });
     
