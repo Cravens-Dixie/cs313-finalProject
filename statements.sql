@@ -16,7 +16,7 @@ CREATE TABLE collections (
 --create a user table for name and password
 -- https://x-team.com/blog/storing-secure-passwords-with-postgresql/ or https://blog.dbi-services.com/securely-store-passwords-in-postgresql/
 --bcrypt: https://github.com/kelektiv/node.bcrypt.js#usage
-CREATE EXTENSION pgcrypto; 
+-- (did not use)CREATE EXTENSION pgcrypto; 
 CREATE TABLE collection_owners(
     id SERIAL PRIMARY KEY,
   username TEXT NOT NULL UNIQUE,
@@ -24,6 +24,7 @@ CREATE TABLE collection_owners(
 );
 
 --insert into collection_owners table
+--did not use
 INSERT INTO collection_owners(username, password)
 VALUES ('Dixie Cravens', crypt('cs313', gen_salt('bf')));
 INSERT INTO collection_owners(username, password)
@@ -73,29 +74,15 @@ VALUES ('Distress Ink', 'Dixie Cravens', 'Salty Ocean', 'blue', 'Ranger', 'mini'
 SELECT item_name, item_description FROM collections WHERE collection_name = 'Squishmallows';
 --getCollectionByOwner
 SELECT DISTINCT collection_name FROM collections WHERE collection_owner = 'Dixie Cravens';
+
+--addItem and createNewCollection
+INSERT INTO collections(collection_name, collection_owner, item_name, item_description)
+VALUES ('Distress Ink', 'Dixie Cravens', 'Broken China', 'blue'');
+
 --searchForUser(with password)
+--did not use
 SELECT (password = crypt('cs313', password)) AS pwd_match
 FROM collection_owners
 WHERE username = 'Dixie Cravens';
 
---addItem
-INSERT INTO collections(collection_name, collection_owner, item_name, item_description)
-VALUES ('Distress Ink', 'Dixie Cravens', 'Broken China', 'blue'');
 
-
-
-
---not using this format for project
-INSERT INTO squishmallows(name, description, size, price_paid)
-VALUES ('Lavendar', 'purple rainbow cat caticorn', '16', '10.00');
-
-INSERT INTO squishmallows(name, description, size, price_paid)
-VALUES ('Charley', 'blue llama', '16', '20.00'),
- ('Foxy', 'red fox', '16', '20.00'),
- ('Strawberry', 'pink rabbit', '8', '12.00'),
- ('Gabe', 'brown dog', '8', '12.00');
-
--- local only
-CREATE USER catherine WITH PASSWORD 'jinx';
-GRANT SELECT, INSERT, UPDATE ON squishmallows TO catherine;
-GRANT USAGE, SELECT ON SEQUENCE squishmallows_id_seq TO catherine;

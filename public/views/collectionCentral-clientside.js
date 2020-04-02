@@ -69,7 +69,7 @@ function chooseCollection() {
         $("#addItem").append("<label for=\"itemName\">Name:</label><br>" + 
         "<input type=\"text\" id=\"itemName\" name=\"itemName\"><br>" +  
         "<label for=\"itemDesc\">Item description:</label><br>" + 
-        "<input type=\"text\" id=\"itemDesc\" name=\"itemDesc\"><br>" + 
+        "<input type=\"text\" id=\"itemDesc\" name=\"itemDesc\"><br><br>" + 
         "<input type=\"button\" name=\"submit_form\" id=\"item_submit\" value=\"Add Item\" onclick=\"addItemtoDB()\"> " +
         "</form>");
      });
@@ -117,6 +117,12 @@ function newCollection() {
     //will forward info by 'onclick' event to addCollectiontoDB()
     var userName = sessionStorage.getItem("collectionOwner");
     console.log("Lets create a new collection for " + userName);
+
+    //clear out other forms and divs
+    $("#collectionResults").empty();
+    $("#addItem").empty();
+    $("#addResults").empty();
+
 
     //create and add the form to the collectionCentral.ejs page
     $("#newCollectForm").append("<h4>You must provide one item in the collection to start a collection.</h4>");
