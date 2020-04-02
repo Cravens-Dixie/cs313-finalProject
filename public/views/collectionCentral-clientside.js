@@ -142,7 +142,7 @@ function addCollectiontoDB() {
 
     $.post("/newCollection", {owner: owner, name: name, itemName: itemName, itemDesc: itemDesc}, function(data) {
         console.log(data);
-        $("#addResults").append("<h4>Collection " + data.name + "  Added!</h4>");
+        $("#addResults").append("<h4>Collection " + data.collection + "  Added!</h4>");
     });
 }
 
