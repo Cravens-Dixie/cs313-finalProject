@@ -5,22 +5,22 @@ function seeCollections(req, res){
     //get all collections by collection_owner upon successful login
     //need a owner
     var owner = req.query.owner;
-    console.log("Getting all collections by owner:" + owner);
-    
+
+    //send owner to collection model for results from db
     collectionModels.getCollectionByOwner(owner, function(results) {
-        res.json(results);
+        res.json(results);//returns results to collectionCentral-clientside.js
     });
    
 };
 
 function seeCollection(req, res) {
-    //get a single collection by collection_name 
+    //get a single collection by collection_name
+    //get collection name from GET 
     var collection = req.query.collection; 
-    console.log("get a single collection by collection_name");
 
+    //send collection name to collection model
     collectionModels.getCollectionByName(collection, function(results) {
-        console.log("Getting a collection by name: " + collection);
-        res.json(results);
+        res.json(results);//returns db results as rows to chooseCollection()
     });
  
 }
@@ -36,6 +36,7 @@ function createCollection(req, res) {
     console.log("Creating a new collection with: " + name + owner + itemName + itemDesc);
 
     collectionModels.createNewCollection(name, owner, itemName, itemDesc, function(results) {
+        var results = ({collection: name, owner: owner, item: itemName, description: itemDesc});
         res.json(results);
     });
     
@@ -52,6 +53,8 @@ function createItem(req, res) {
     console.log("Adding new item with name: " + itemName + " and " + itemDesc + " for collection " + name)
                    
     collectionModels.createNewItem(name, owner, itemName, itemDesc, function(results) {
+        results = ({name:name, owner:owner, item:itemName, description:itemDesc}); 
+           
         res.json(results);
     });
     

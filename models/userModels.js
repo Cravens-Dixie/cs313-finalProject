@@ -14,46 +14,43 @@ function searchForUser(userName, userPassword, callback) {
     var params = [userName];
     console.log("Searching DB for matching username and password: " + userName + " " + userPassword)
 
-    pool.query(sql, params, function(err, db_results) {
-        if (err) {
-            console.log("An error occurred with the DB");
-            console.log(err);
-            callback(err, null);
+    pool.query(sql, params, function(error, db_results) {
+        if (error) {
+            //var db_results = {name: "dberror", message: "The database is not responding."};
+            console.log("An error occurred with the DB" + error);
+            callback(error, null);
+        }else if (db_results.rows.length == 0) {
+            console.log("No match was found." + db_results.rows);
+            callback(error, null);
         }else {
-             console.log(db_results);
-             var enteredPassword = userPassword;
-             var hash = db_results.rows[0].password;
-             
-            bcrypt.compare(enteredPassword, hash, function(err, result) {
-                if (err) {
-                    console.log("An error occurred with password compare");
-                    console.log(err);
-                    callback(err, null);
-                }else {
-                    if (result == true) {
-                    var results = {user: userName};
-                    callback(null,results);
-                    }else{
-                        results = {success: false};
-                        callback(err, results);
-                        //TODO: send back to home page with an error message in <div id="addResults">
-                    }
-                } 
-             }) 
-        };
+            //check password in db with user password using bcrypt.compare()
+            var enteredPassword = userPassword;
+            var hash = db_results.rows[0].password;
+            
+            bcrypt.compare(enteredPassword, hash, function(error, result) {
+            
+                if (result == true) {
+                    //var result = ({user: userName});
+                    console.log ("Password is a match.")
+                    callback(null, result);// returns results to userController.validateUser()
 
-        //callback(null, results);// returns results to userController.validateUser()
+                }else {
+                    console.log("The password is not a match.");
+                    //var error = {name: "userErr", message:"Passwords did not match"};
+                    callback(error, null);// returns error to userController.validateUser()
+                    
+                }
+                    
+            })
+             
+        };
            
     });
-    //var enteredPassword = userPassword;
-    //var hash = password;
-//  var results = {user:[{userName: userName, password: password}]};
-
-    //  callback(null, results);
 };
  
-    
+function passwordCompare(userPassword, hash) {
 
+}
 
 function insertNewUser(userName, password, callback) {
     //Create a new user and password
@@ -74,13 +71,10 @@ function insertNewUser(userName, password, callback) {
                 var results = {user:userName};
                 callback(null, results);
             };
-        //callback (null, results); // returns results to userController.createNewUser()  
+ 
         });
 
     });
-    //var results = {user:[{userName: "Cat Cravens", password: "catWORD"}]};
-    //var results = {user:userName};
-    //callback(null, results); 
 };
 
 module.exports = {

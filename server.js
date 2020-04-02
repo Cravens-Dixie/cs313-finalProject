@@ -22,7 +22,7 @@ app.get("/seeCollection", collectionController.seeCollection);
 app.post("/newCollection", collectionController.createCollection);
 app.post("/newItem", collectionController.createItem);
 
-app.get("/logIn", userController.validateUser);
+app.post("/logIn", userController.validateUser);
 app.post("/newUser", userController.createNewUser);
 
 app.listen(PORT, function() {

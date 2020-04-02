@@ -21,7 +21,7 @@ function getCollectionByName(collection, callback) {
                collection:db_results.rows
            };
 
-           callback(results);//***Not returning results */ returns results to collectionController.seeCollection()
+           callback(results);//returns results to collectionController.seeCollection()
            console.log("Returning db results for " + collection);
        }
 
@@ -71,17 +71,11 @@ function createNewCollection(name, owner, itemName, itemDesc, callback) {
            console.log("Creating new collection in DB: ");
            console.log(db_results); 
 
-           var results = ({collection: name, owner: owner, item: itemName, description: itemDesc, Add: "successful"});
-           
-           callback(results);// returns results to collectionController.createCollection()
+           callback(db_results);// returns results to collectionController.createCollection()
            console.log("Returning db results for collection " + name);
        }
       
     });
-
-    //results = ({name: name, owner: owner, itemName: itemName, itemDesc: itemDesc});
-
-    //callback(results);
 };
 
 function createNewItem(name, owner, itemName, itemDesc, callback) {
@@ -98,19 +92,12 @@ function createNewItem(name, owner, itemName, itemDesc, callback) {
            console.log("Inserted an item in DB: ");
            console.log(db_results);
 
-           results = ({name:name, owner:owner, item:itemName, description:itemDesc}); 
-           
-          
-
-           callback(results);// returns results to collectionController.createItem()
-           
-       }
+           callback(db_results);// returns results to collectionController.createItem()   
+        }
 
     });
-    //results = ({name:name, owner:owner, item:itemName, description:itemDesc});
+}
 
-    //callback(results);
-};
 
 module.exports = {
     getCollectionByName: getCollectionByName,
