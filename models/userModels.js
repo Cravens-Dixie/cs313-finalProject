@@ -29,17 +29,12 @@ function searchForUser(userName, userPassword, callback) {
 
                 }else {
                     console.log("The password is not a match.");
-                    callback(error, null);// returns error to userController.validateUser()
-                    
+                    callback(error, null);// returns error to userController.validateUser()    
                 }
-                    
-            })
-             
-        };
-           
+            })    
+        };     
     });
 };
- 
 
 function insertNewUser(userName, password, callback) {
     //Create a new user and password
@@ -57,9 +52,7 @@ function insertNewUser(userName, password, callback) {
                 //var results = {user:userName};
                 callback(null, db_results);
             };
- 
         });
-
     });
 };
 
