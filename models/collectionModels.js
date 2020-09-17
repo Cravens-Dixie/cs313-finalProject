@@ -3,7 +3,7 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
 function getCollectionByName(collection, callback) {
-     var sql = "SELECT item_name, item_description FROM collections WHERE collection_name = $1::text";
+     var sql = "SELECT item_name, item_description, photo FROM collections WHERE collection_name = $1::text";
      var params = [collection];
 
      pool.query(sql, params, function(err, db_results) {

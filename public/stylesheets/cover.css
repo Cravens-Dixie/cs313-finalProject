@@ -168,3 +168,8 @@ body {
     width: 700px;
   }
 }
+
+/* custom styles*/
+.img-thumbnail {
+  max-width: 75px;
+}

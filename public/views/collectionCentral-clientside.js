@@ -26,7 +26,7 @@ function submitUser() {
         } 
     });
 }
-
+ 
 //take user to /seeCollection
 function chooseCollection() {
     //get collection name from collection drop down menu created with successful log in
@@ -34,7 +34,7 @@ function chooseCollection() {
   
     $.get("/seeCollection", {collection: collection}, function(data) {//data comes from collectionController seeCollection()
         sessionStorage.setItem("collectionName", collection);
-        
+        console.log(data);
         //empty out any previous results then append new collection results
         $("#collectionResults").empty();
         $("#collectionResults").append("<h2>Collection:" + collection + "</h2><ul>");
@@ -42,7 +42,7 @@ function chooseCollection() {
          for (var i = 0; i < data.collection.length; i++) {
              var collectionItem = data.collection[i];
             
-             $("#collectionResults").append("<li>" + collectionItem.item_name + " -- " + collectionItem.item_description + "</li>"); 
+             $("#collectionResults").append("<li><img src=\"" + collectionItem.photo + "\" class=\"img-fluid img-thumbnail\" alt=\"Not Avail\">" + collectionItem.item_name + " -- " + collectionItem.item_description + "</li>"); 
          };
          //a form to add an item to the currently selected collection
         $("#collectionResults").append("</ul>");

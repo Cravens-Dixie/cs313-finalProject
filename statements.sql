@@ -77,7 +77,15 @@ SELECT DISTINCT collection_name FROM collections WHERE collection_owner = 'Dixie
 
 --addItem and createNewCollection
 INSERT INTO collections(collection_name, collection_owner, item_name, item_description)
-VALUES ('Distress Ink', 'Dixie Cravens', 'Broken China', 'blue'');
+VALUES ('Distress Ink', 'Dixie Cravens', 'Broken China', 'blue');
+
+--add image path to collection photo column
+UPDATE collections 
+SET photo =  '/images/itsGonnaBeMay.jpg'
+WHERE id=76;
+UPDATE collections 
+SET photo =  '/images/tpMinistering.jpg'
+WHERE id=79;
 
 --searchForUser(with password)
 --did not use
